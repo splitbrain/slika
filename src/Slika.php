@@ -7,9 +7,9 @@ namespace splitbrain\slika;
 class Slika
 {
     /** @var int rotate an image counter clock wise */
-    const ROTATE_CCW = 6;
+    const ROTATE_CCW = 8;
     /** @var int rotate an image clock wise */
-    const ROTATE_CW = 8;
+    const ROTATE_CW = 6;
     /** @var int rotate on it's head */
     const ROTATE_TOPDOWN = 3;
 

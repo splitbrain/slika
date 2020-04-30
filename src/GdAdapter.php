@@ -17,7 +17,7 @@ class GdAdapter extends Adapter
 
 
     /** @inheritDoc */
-    public function __construct($imagepath, $options)
+    public function __construct($imagepath, $options = [])
     {
         parent::__construct($imagepath, $options);
         $this->image = $this->loadImage($imagepath);
@@ -53,24 +53,36 @@ class GdAdapter extends Adapter
     public function rotate($rotation)
     {
         $rotation = (int)$rotation;
-        if ($rotation < 1 || $rotation > 7) {
+        if ($rotation < 0 || $rotation > 8) {
             throw new Exception('Unknown rotation given');
         }
 
+        // fill color
+        $transparency = imagecolorallocatealpha($this->image, 0, 0, 0, 127);
+
         // rotate
         if (in_array($rotation, [3, 4])) {
-            $image = imagerotate($this->image, 180, 0);
+            $image = imagerotate($this->image, 180, $transparency, 1);
         } elseif (in_array($rotation, [5, 6])) {
-            $image = imagerotate($this->image, -90, 0);
+            $image = imagerotate($this->image, -90, $transparency, 1);
             list($this->width, $this->height) = [$this->height, $this->width];
         } elseif (in_array($rotation, [7, 8])) {
-            $image = imagerotate($this->image, 90, 0);
+            $image = imagerotate($this->image, 90, $transparency, 1);
             list($this->width, $this->height) = [$this->height, $this->width];
         }
 
         // additionally flip
         if (in_array($rotation, [2, 5, 7, 4])) {
             imageflip($image, IMG_FLIP_HORIZONTAL);
+        }
+
+        imagedestroy($this->image);
+        $this->image = $image;
+
+        //keep png alpha channel if possible
+        if ($this->extension == 'png' && function_exists('imagesavealpha')) {
+            imagealphablending($this->image, false);
+            imagesavealpha($this->image, true);
         }
 
         return $this;
@@ -93,8 +105,8 @@ class GdAdapter extends Adapter
      */
     public function crop($width, $height)
     {
-        list($cropWidth, $cropHeight, $offsetX, $offsetY) = $this->cropPosition($width, $height);
-        $this->resizeOperation($cropWidth, $cropHeight, $offsetX, $offsetY);
+        list($this->width, $this->height, $offsetX, $offsetY) = $this->cropPosition($width, $height);
+        $this->resizeOperation($width, $height, $offsetX, $offsetY);
         return $this;
     }
 
@@ -105,10 +117,14 @@ class GdAdapter extends Adapter
      */
     public function save($path, $extension = '')
     {
+        if ($extension === '') {
+            $extension = $this->extension;
+        }
         $saver = 'image' . $extension;
-        if (function_exists($saver)) {
+        if (!function_exists($saver)) {
             throw new Exception('Can not save image format ' . $extension);
         }
+        $saver($this->image, $path);
     }
 
     /**
@@ -129,10 +145,10 @@ class GdAdapter extends Adapter
         $this->height = $info[1];
 
         // what type of image is it?
-        $extension = image_type_to_extension($info[2]);
-        $creator = 'imagecreatefrom' . $extension;
-        if (!file_exists($creator)) {
-            throw new Exception('Can not work with image format ' . $extension);
+        $this->extension = image_type_to_extension($info[2], false);
+        $creator = 'imagecreatefrom' . $this->extension;
+        if (!function_exists($creator)) {
+            throw new Exception('Can not work with image format ' . $this->extension);
         }
 
         // create the GD instance
@@ -203,13 +219,15 @@ class GdAdapter extends Adapter
     }
 
     /**
-     * Calculate missing height
+     * Calculate new size
+     *
+     * If widht and height are given, the new size will be fit within this bounding box.
+     * If only one value is given the other is adjusted to match according to the aspect ratio
      *
      * @param int $width width of the bounding box
      * @param int $height height of the bounding box
      * @return array (width, height)
      * @throws Exception
-     * @todo actually shrink down if bounding box is given
      */
     protected function boundingBox($width, $height)
     {
@@ -218,10 +236,16 @@ class GdAdapter extends Adapter
         }
 
         if (!$height) {
+            // adjust to match width
             $height = round(($width * $this->height) / $this->width);
-        }
-        if (!$width) {
+        } else if (!$width) {
+            // adjust to match height
             $width = round(($height * $this->width) / $this->height);
+        } else {
+            // fit into bounding box
+            $scale = min($width / $this->width, $height / $this->height);
+            $width = $this->width * $scale;
+            $height = $this->height * $scale;
         }
 
         return [$width, $height];
