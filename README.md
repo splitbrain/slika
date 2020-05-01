@@ -8,7 +8,13 @@ This is a library that covers only the bare basics you need when handling images
 
 It can use either PHP's libGD or a locally installed ImageMagick binary.
 
-##Usage
+## Installation
+
+Use composer
+
+    composer require splitbrain/slika
+
+## Usage
 
 Simply get an Adapter from the Slica factory, run some operations on it and call `save`.  
 
