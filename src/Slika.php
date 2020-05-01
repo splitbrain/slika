@@ -37,8 +37,17 @@ class Slika
      */
     public static function run($imagePath, $options = [])
     {
-        // FIXME determine which adapter to load
-        return new GdAdapter($imagePath, $options);
+        $options = array_merge(self::DEFAULT_OPTIONS, $options);
+
+        if (is_executable($options['imconvert'])) {
+            return new ImageMagickAdapter($imagePath, $options);
+        }
+
+        if (function_exists('gd_info')) {
+            return new GdAdapter($imagePath, $options);
+        }
+
+        throw new Exception('No suitable Adapter found');
     }
 
 }
