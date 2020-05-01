@@ -3,13 +3,13 @@
 
 namespace splitbrain\slika\tests;
 
-use splitbrain\slika\GdAdapter;
+use splitbrain\slika\ImageMagickAdapter;
 
-class GdAdapterTest extends BaseAdapterTest
+class ImageMagickAdapterTest extends BaseAdapterTest
 {
     /** @inheritDoc */
     protected function getAdapter($file)
     {
-        return new GdAdapter($file);
+        return new ImageMagickAdapter($file);
     }
 }

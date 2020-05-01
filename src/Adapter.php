@@ -19,7 +19,7 @@ abstract class Adapter
      * @param array $options set options
      * @throws Exception
      */
-    public function __construct($imagepath, $options=[])
+    public function __construct($imagepath, $options = [])
     {
         if (!file_exists($imagepath)) {
             throw new Exception('image file does not exist');
@@ -30,7 +30,7 @@ abstract class Adapter
         }
 
         $this->imagepath = $imagepath;
-        $this->options = $options;
+        $this->options = array_merge(Slika::DEFAULT_OPTIONS, $options);
     }
 
     /**

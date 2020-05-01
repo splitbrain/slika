@@ -31,7 +31,9 @@ class GdAdapter extends Adapter
         if ($this->image) imagedestroy($this->image);
     }
 
-    /** @inheritDoc */
+    /** @inheritDoc
+     * @throws Exception
+     */
     public function autorotate()
     {
         if ($this->extension !== 'jpeg' || !function_exists('exif_read_data')) {
@@ -49,11 +51,12 @@ class GdAdapter extends Adapter
 
     /**
      * @inheritDoc
+     * @throws Exception
      */
-    public function rotate($rotation)
+    public function rotate($orientation)
     {
-        $rotation = (int)$rotation;
-        if ($rotation < 0 || $rotation > 8) {
+        $orientation = (int)$orientation;
+        if ($orientation < 0 || $orientation > 8) {
             throw new Exception('Unknown rotation given');
         }
 
@@ -61,18 +64,20 @@ class GdAdapter extends Adapter
         $transparency = imagecolorallocatealpha($this->image, 0, 0, 0, 127);
 
         // rotate
-        if (in_array($rotation, [3, 4])) {
+        if (in_array($orientation, [3, 4])) {
             $image = imagerotate($this->image, 180, $transparency, 1);
-        } elseif (in_array($rotation, [5, 6])) {
+        }
+        if (in_array($orientation, [5, 6])) {
             $image = imagerotate($this->image, -90, $transparency, 1);
             list($this->width, $this->height) = [$this->height, $this->width];
-        } elseif (in_array($rotation, [7, 8])) {
+        } elseif (in_array($orientation, [7, 8])) {
             $image = imagerotate($this->image, 90, $transparency, 1);
             list($this->width, $this->height) = [$this->height, $this->width];
         }
+        /** @var resource $image is now defined */
 
         // additionally flip
-        if (in_array($rotation, [2, 5, 7, 4])) {
+        if (in_array($orientation, [2, 5, 7, 4])) {
             imageflip($image, IMG_FLIP_HORIZONTAL);
         }
 
@@ -113,7 +118,6 @@ class GdAdapter extends Adapter
     /**
      * @inheritDoc
      * @throws Exception
-     * @todo support jpeg quality setting
      */
     public function save($path, $extension = '')
     {
@@ -124,7 +128,14 @@ class GdAdapter extends Adapter
         if (!function_exists($saver)) {
             throw new Exception('Can not save image format ' . $extension);
         }
-        $saver($this->image, $path);
+
+        if ($extension == 'jpeg') {
+            imagejpeg($this->image, $path, $this->options['quality']);
+        } else {
+            $saver($this->image, $path);
+        }
+
+        imagedestroy($this->image);
     }
 
     /**
@@ -301,7 +312,7 @@ class GdAdapter extends Adapter
 
         // calculate crop offset
         $offsetX = (int)(($this->width - $cropWidth) / 2);
-        $offsetY = (int)(($this->height - $cropHeight) / 3);
+        $offsetY = (int)(($this->height - $cropHeight) / 2);
 
         return [$cropWidth, $cropHeight, $offsetX, $offsetY];
     }

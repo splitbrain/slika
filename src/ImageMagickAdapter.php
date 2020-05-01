@@ -4,77 +4,117 @@
 namespace splitbrain\slika;
 
 
-class ImageMagickAdapter
+class ImageMagickAdapter extends Adapter
 {
+    /** @var array the CLI arguments to run imagemagick */
+    protected $args = [];
 
-    /**
-     * resize images using external ImageMagick convert program
-     *
-     * @author Pavel Vitis <Pavel.Vitis@seznam.cz>
-     * @author Andreas Gohr <andi@splitbrain.org>
-     *
-     * @param string $ext     extension
-     * @param string $from    filename path to file
-     * @param int    $from_w  original width
-     * @param int    $from_h  original height
-     * @param string $to      path to resized file
-     * @param int    $to_w    desired width
-     * @param int    $to_h    desired height
-     * @return bool
-     */
-    function media_resize_imageIM($ext,$from,$from_w,$from_h,$to,$to_w,$to_h){
-        global $conf;
+    /** @inheritDoc */
+    public function __construct($imagepath, $options = [])
+    {
+        parent::__construct($imagepath, $options);
 
-        // check if convert is configured
-        if(!$conf['im_convert']) return false;
-
-        // prepare command
-        $cmd  = $conf['im_convert'];
-        $cmd .= ' -resize '.$to_w.'x'.$to_h.'!';
-        if ($ext == 'jpg' || $ext == 'jpeg') {
-            $cmd .= ' -quality '.$conf['jpg_quality'];
+        if (!is_executable($this->options['imconvert'])) {
+            throw new Exception('Can not find or run ' . $this->options['imconvert']);
         }
-        $cmd .= " $from $to";
 
-        @exec($cmd,$out,$retval);
-        if ($retval == 0) return true;
-        return false;
+        $this->args[] = $this->options['imconvert'];
+        $this->args[] = $imagepath;
     }
 
-
-    /**
-     * crop images using external ImageMagick convert program
-     *
-     * @author Andreas Gohr <andi@splitbrain.org>
-     *
-     * @param string $ext     extension
-     * @param string $from    filename path to file
-     * @param int    $from_w  original width
-     * @param int    $from_h  original height
-     * @param string $to      path to resized file
-     * @param int    $to_w    desired width
-     * @param int    $to_h    desired height
-     * @param int    $ofs_x   offset of crop centre
-     * @param int    $ofs_y   offset of crop centre
-     * @return bool
-     */
-    function media_crop_imageIM($ext,$from,$from_w,$from_h,$to,$to_w,$to_h,$ofs_x,$ofs_y){
-        global $conf;
-
-        // check if convert is configured
-        if(!$conf['im_convert']) return false;
-
-        // prepare command
-        $cmd  = $conf['im_convert'];
-        $cmd .= ' -crop '.$to_w.'x'.$to_h.'+'.$ofs_x.'+'.$ofs_y;
-        if ($ext == 'jpg' || $ext == 'jpeg') {
-            $cmd .= ' -quality '.$conf['jpg_quality'];
-        }
-        $cmd .= " $from $to";
-
-        @exec($cmd,$out,$retval);
-        if ($retval == 0) return true;
-        return false;
+    /** @inheritDoc */
+    public function autorotate()
+    {
+        $this->args[] = '-orient';
+        return $this;
     }
 
+    /** @inheritDoc */
+    public function rotate($orientation)
+    {
+        $orientation = (int)$orientation;
+        if ($orientation < 0 || $orientation > 8) {
+            throw new Exception('Unknown rotation given');
+        }
+
+        // rotate
+        $this->args[] = '-rotate';
+        if (in_array($orientation, [3, 4])) {
+            $this->args[] = '180';
+        } elseif (in_array($orientation, [5, 6])) {
+            $this->args[] = '270';
+        } elseif (in_array($orientation, [7, 8])) {
+            $this->args[] = '90';
+        }
+
+        // additionally flip
+        if (in_array($orientation, [2, 5, 7, 4])) {
+            $this->args[] = '-flop';
+        }
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     * @throws Exception
+     */
+    public function resize($width, $height)
+    {
+        if ($width == 0 && $height == 0) {
+            throw new Exception('You can not resize to 0x0');
+        }
+        if ($width == 0) $width = '';
+        if ($height == 0) $height = '';
+
+        $size = $width . 'x' . $height;
+
+        $this->args[] = '-resize';
+        $this->args[] = $size;
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     * @throws Exception
+     */
+    public function crop($width, $height)
+    {
+        if ($width == 0 && $height == 0) {
+            throw new Exception('You can not crop to 0x0');
+        }
+
+        if ($width == 0) $width = $height;
+        if ($height == 0) $height = $width;
+
+        $this->args[] = '-gravity';
+        $this->args[] = 'center';
+        $this->args[] = '-crop';
+        $this->args[] = $width . 'x' . $height . '+0+0';
+        $this->args[] = '+repage';
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     * @throws Exception
+     */
+    public function save($path, $extension = '')
+    {
+        $this->args[] = '-quality';
+        $this->args[] = $this->options['quality'];
+
+        if ($extension !== '') $path = $extension . ':' . $path;
+        $this->args[] = $path;
+
+        $args = array_map('escapeshellarg', $this->args);
+
+        $cmd = join(' ', $args);
+        $output = [];
+        $return = 0;
+        exec($cmd, $output, $return);
+
+        if ($return !== 0) {
+            throw new Exception('ImageMagick returned non-zero exit code for ' . $cmd);
+        }
+    }
 }

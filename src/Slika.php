@@ -13,6 +13,12 @@ class Slika
     /** @var int rotate on it's head */
     const ROTATE_TOPDOWN = 3;
 
+
+    const DEFAULT_OPTIONS = [
+        'quality' => 92,
+        'imconvert' => '/usr/bin/convert',
+    ];
+
     /**
      * This is a factory only, thus the constructor is private
      */
@@ -29,7 +35,8 @@ class Slika
      * @return Adapter
      * @throws Exception
      */
-    public static function run($imagePath, $options=[]) {
+    public static function run($imagePath, $options = [])
+    {
         // FIXME determine which adapter to load
         return new GdAdapter($imagePath, $options);
     }
