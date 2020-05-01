@@ -18,7 +18,7 @@ abstract class BaseAdapterTest extends TestCase
     public function testResize()
     {
         $orig = __DIR__ . '/landscape.png';
-        $dest = $this->tempdir . '/test.png';
+        $dest = $this->artefact('png');
 
         $this->assertSize($orig, 1000, 500);
 
@@ -38,7 +38,7 @@ abstract class BaseAdapterTest extends TestCase
     public function testCrop()
     {
         $orig = __DIR__ . '/landscape.png';
-        $dest = $this->tempdir . '/test.png';
+        $dest = $this->artefact('png');
 
         $this->assertSize($orig, 1000, 500);
 
@@ -55,7 +55,7 @@ abstract class BaseAdapterTest extends TestCase
     public function testRotate()
     {
         $orig = __DIR__ . '/landscape.png';
-        $dest = $this->tempdir . '/test.png';
+        $dest = $this->artefact('png');
 
         $this->assertSize($orig, 1000, 500);
 
@@ -74,7 +74,7 @@ abstract class BaseAdapterTest extends TestCase
     public function testCombined()
     {
         $orig = __DIR__ . '/landscape.png';
-        $dest = $this->tempdir . '/test.png';
+        $dest = $this->artefact('png');
 
         $this->assertSize($orig, 1000, 500);
 

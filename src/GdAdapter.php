@@ -28,7 +28,9 @@ class GdAdapter extends Adapter
      */
     public function __destruct()
     {
-        if ($this->image) imagedestroy($this->image);
+        if (is_resource($this->image)) {
+            imagedestroy($this->image);
+        }
     }
 
     /** @inheritDoc

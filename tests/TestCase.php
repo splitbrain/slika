@@ -5,30 +5,20 @@ namespace splitbrain\slika\tests;
 
 class TestCase extends \PHPUnit\Framework\TestCase
 {
-
-    protected $tempdir;
-
     /**
-     * Create temporary directory
+     * Get the path to where the current test may store its artefact
+     *
+     * @param string $ext the image extension to append
+     * @return string
      */
-    protected function setUp()
+    protected function artefact($ext)
     {
-        parent::setUp();
-        $this->tempdir = sys_get_temp_dir() . '/slika';
-        if (!is_dir($this->tempdir)) {
-            mkdir($this->tempdir, 0777, true);
-        }
-    }
+        $class = get_class($this);
+        $class = substr($class, strrpos($class, '\\') + 1);
+        $test = $this->getName();
 
-    /**
-     * Clean up temporary directory
-     */
-    protected function tearDown()
-    {
-        parent::tearDown();
-        $this->rrmdir($this->tempdir);
+        return __DIR__ . '/artefacts/' . $class . '-' . $test . '.' . $ext;
     }
-
 
     /**
      * Check that the given image has the proper dimension
@@ -59,10 +49,15 @@ class TestCase extends \PHPUnit\Framework\TestCase
         $found = $this->getColor($path, $position);
         $wanted = $this->resolveColor($color);
 
-        // allow a difference of 2 per channel
-        $this->assertLessThan(2, abs($wanted[0] - $found['red']), 'Color difference for RED channel too high');
-        $this->assertLessThan(2, abs($wanted[1] - $found['green']), 'Color difference for GREEN channel too high');
-        $this->assertLessThan(2, abs($wanted[2] - $found['blue']), 'Color difference for BLUE channel too high');
+        $distance = abs($wanted[0] - $found['red']) +
+            abs($wanted[1] - $found['green']) +
+            abs($wanted[2] - $found['blue']);
+
+        $this->assertLessThan(
+            5, $distance,
+            $path . "\n" .
+            'Color (' . join(',', $found) . ') seems not be ' . $color . ' at position "' . $position . '"'
+        );
     }
 
     /**
@@ -79,7 +74,10 @@ class TestCase extends \PHPUnit\Framework\TestCase
         $found = $this->getColor($path, $position);
 
         // allow a difference of 20
-        $this->assertLessThan(20, abs($value - $found['alpha']), 'Color difference for ALPHA channel too high');
+        $this->assertLessThan(
+            20, abs($value - $found['alpha']),
+            $path . "\n" .
+            'Color difference for ALPHA channel too high at position "' . $position . '"');
     }
 
     /**
@@ -100,7 +98,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
 
         $image = $opener($path);
         $rgb = imagecolorat($image, $x, $y);
-        $found =  imagecolorsforindex($image, $rgb);
+        $found = imagecolorsforindex($image, $rgb);
         imagedestroy($image);
         return $found;
     }
@@ -155,31 +153,6 @@ class TestCase extends \PHPUnit\Framework\TestCase
         }
 
         throw new \Exception('Unknown color name');
-    }
-
-    /**
-     * Recursive deletion
-     *
-     * @param string $dir
-     * @link https://stackoverflow.com/a/3338133
-     */
-    public function rrmdir($dir)
-    {
-        if (!is_dir($dir)) {
-            return;
-        }
-        $objects = scandir($dir);
-        foreach ($objects as $object) {
-            if ($object != '.' && $object != '..') {
-                $path = $dir . '/' . $object;
-                if (is_dir($path) && !is_link($path)) {
-                    $this->rrmdir($path);
-                } else {
-                    unlink($path);
-                }
-            }
-        }
-        rmdir($dir);
     }
 
 }

@@ -42,9 +42,9 @@ class ImageMagickAdapter extends Adapter
         if (in_array($orientation, [3, 4])) {
             $this->args[] = '180';
         } elseif (in_array($orientation, [5, 6])) {
-            $this->args[] = '270';
-        } elseif (in_array($orientation, [7, 8])) {
             $this->args[] = '90';
+        } elseif (in_array($orientation, [7, 8])) {
+            $this->args[] = '270';
         }
 
         // additionally flip
