@@ -44,7 +44,7 @@ abstract class Adapter
      * Rotate and/or flip the image
      *
      * This expects an orientation flag as stored in EXIF data. For typical operations,
-     * SLICA::ROTATE_* constants are defined.
+     * Slika::ROTATE_* constants are defined.
      *
      * @param int $orientation Exif rotation flags
      * @return Adapter
