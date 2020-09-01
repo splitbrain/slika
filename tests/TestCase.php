@@ -54,7 +54,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
             abs($wanted[2] - $found['blue']);
 
         $this->assertLessThan(
-            5, $distance,
+            10, $distance,
             $path . "\n" .
             'Color (' . join(',', $found) . ') seems not be ' . $color . ' at position "' . $position . '"'
         );

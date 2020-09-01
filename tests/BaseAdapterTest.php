@@ -88,4 +88,26 @@ abstract class BaseAdapterTest extends TestCase
         $this->assertColor($dest, 'left', 'green');
         $this->assertAlpha($dest, 'center', 100);
     }
+
+    public function provideConversion() {
+        return [
+            ['gif'], ['png'], ['jpeg'], ['webp']
+        ];
+    }
+
+    /**
+     * @param string $out
+     * @dataProvider provideConversion
+     * @throws \Exception
+     */
+    public function testConversion($out) {
+        $orig = __DIR__ . '/landscape.png';
+        $dest = $this->artefact($out);
+
+        ($this->getAdapter($orig))->save($dest, $out);
+        $this->assertColor($dest, 'top', 'blue');
+        $this->assertColor($dest, 'right', 'red');
+        $this->assertColor($dest, 'bottom', 'green');
+        $this->assertColor($dest, 'left', 'yellow');
+    }
 }
