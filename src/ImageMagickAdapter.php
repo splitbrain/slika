@@ -25,7 +25,7 @@ class ImageMagickAdapter extends Adapter
     /** @inheritDoc */
     public function autorotate()
     {
-        $this->args[] = '-orient';
+        $this->args[] = '-auto-orient';
         return $this;
     }
 

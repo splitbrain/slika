@@ -35,20 +35,35 @@ class GdAdapter extends Adapter
 
     /** @inheritDoc
      * @throws Exception
+     * @link https://gist.github.com/EionRobb/8e0c76178522bc963c75caa6a77d3d37#file-imagecreatefromstring_autorotate-php-L15
      */
     public function autorotate()
     {
-        if ($this->extension !== 'jpeg' || !function_exists('exif_read_data')) {
+        if ($this->extension !== 'jpeg') {
             return $this;
         }
 
-        $exif = exif_read_data($this->imagepath);
-        if (empty($exif['Orientation'])) {
-            return $this;
+        $orientation = 1;
+
+        if (function_exists('exif_read_data')) {
+            // use PHP's exif capablities
+            $exif = exif_read_data($this->imagepath);
+            if (!empty($exif['Orientation'])) {
+                $orientation = $exif['Orientation'];
+            }
+        } else {
+            // grep the exif info from the raw contents
+            $data = file_get_contents($this->imagepath);
+            if (preg_match('@\x12\x01\x03\x00\x01\x00\x00\x00(.)\x00\x00\x00@', $data, $matches)) {
+                // Little endian EXIF
+                $orientation = ord($matches[1]);
+            } else if (preg_match('@\x01\x12\x00\x03\x00\x00\x00\x01\x00(.)\x00\x00@', $data, $matches)) {
+                // Big endian EXIF
+                $orientation = ord($matches[1]);
+            }
         }
 
-        $this->rotate($exif['Orientation']);
-        return $this;
+        return $this->rotate($orientation);
     }
 
     /**
@@ -60,6 +75,11 @@ class GdAdapter extends Adapter
         $orientation = (int)$orientation;
         if ($orientation < 0 || $orientation > 8) {
             throw new Exception('Unknown rotation given');
+        }
+
+        if ($orientation <= 1) {
+            // no rotation wanted
+            return $this;
         }
 
         // fill color
