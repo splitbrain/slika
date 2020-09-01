@@ -100,6 +100,10 @@ class ImageMagickAdapter extends Adapter
      */
     public function save($path, $extension = '')
     {
+        if ($extension === 'jpg') {
+            $extension = 'jpeg';
+        }
+
         $this->args[] = '-quality';
         $this->args[] = $this->options['quality'];
 

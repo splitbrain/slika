@@ -144,6 +144,9 @@ class GdAdapter extends Adapter
      */
     public function save($path, $extension = '')
     {
+        if ($extension === 'jpg') {
+            $extension = 'jpeg';
+        }
         if ($extension === '') {
             $extension = $this->extension;
         }
