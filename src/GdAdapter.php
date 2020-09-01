@@ -53,7 +53,8 @@ class GdAdapter extends Adapter
             }
         } else {
             // grep the exif info from the raw contents
-            $data = file_get_contents($this->imagepath);
+            // we read only the first 70k bytes
+            $data = file_get_contents($this->imagepath, false, null, 0, 70000);
             if (preg_match('@\x12\x01\x03\x00\x01\x00\x00\x00(.)\x00\x00\x00@', $data, $matches)) {
                 // Little endian EXIF
                 $orientation = ord($matches[1]);
