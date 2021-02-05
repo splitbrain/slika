@@ -3,7 +3,9 @@
 
 namespace splitbrain\slika;
 
-
+/**
+ * Image Processing Adapter for ImageMagick's command line utility `convert`
+ */
 class ImageMagickAdapter extends Adapter
 {
     /** @var array the CLI arguments to run imagemagick */
