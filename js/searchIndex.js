@@ -3,7 +3,7 @@ Search.appendIndex(
                 {
             "fqsen": "\\splitbrain\\slika\\Adapter",
             "name": "Adapter",
-            "summary": "",
+            "summary": "Base\u0020class\u0020for\u0020image\u0020adapters.\u0020Defines\u0020what\u0020image\u0020processing\u0020adapters\u0020need\u0020to\u0020provide",
             "url": "classes/splitbrain-slika-Adapter.html"
         },                {
             "fqsen": "\\splitbrain\\slika\\Adapter\u003A\u003A__construct\u0028\u0029",
@@ -48,12 +48,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\splitbrain\\slika\\Exception",
             "name": "Exception",
-            "summary": "",
+            "summary": "Exception\u0020thrown\u0020on\u0020all\u0020errors\u0020during\u0020image\u0020processing",
             "url": "classes/splitbrain-slika-Exception.html"
         },                {
             "fqsen": "\\splitbrain\\slika\\GdAdapter",
             "name": "GdAdapter",
-            "summary": "",
+            "summary": "Image\u0020processing\u0020adapter\u0020for\u0020PHP\u0027s\u0020libGD",
             "url": "classes/splitbrain-slika-GdAdapter.html"
         },                {
             "fqsen": "\\splitbrain\\slika\\GdAdapter\u003A\u003A__construct\u0028\u0029",
@@ -143,7 +143,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\splitbrain\\slika\\ImageMagickAdapter",
             "name": "ImageMagickAdapter",
-            "summary": "",
+            "summary": "Image\u0020Processing\u0020Adapter\u0020for\u0020ImageMagick\u0027s\u0020command\u0020line\u0020utility\u0020\u0060convert\u0060",
             "url": "classes/splitbrain-slika-ImageMagickAdapter.html"
         },                {
             "fqsen": "\\splitbrain\\slika\\ImageMagickAdapter\u003A\u003A__construct\u0028\u0029",
