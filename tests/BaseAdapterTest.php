@@ -63,10 +63,10 @@ abstract class BaseAdapterTest extends TestCase
         $this->assertSize($orig, 1000, 500);
 
         ($this->getAdapter($orig))
-            ->crop(500, 500)
+            ->crop(250, 250)
             ->save($dest);
 
-        $this->assertSize($dest, 500, 500);
+        $this->assertSize($dest, 250, 250);
         $this->assertColor($dest, 'top', 'blue');
         $this->assertColor($dest, 'bottom', 'green');
         $this->assertAlpha($dest, 'center', 100);
