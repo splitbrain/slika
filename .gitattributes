@@ -2,3 +2,8 @@
 *.png filter=lfs diff=lfs merge=lfs -text
 *.xcf filter=lfs diff=lfs merge=lfs -text
 *.bmp filter=lfs diff=lfs merge=lfs -text
+
+# Exclude from git export
+/.* export-ignore
+/phpunit.xml export-ignore
+/tests export-ignore
