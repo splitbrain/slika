@@ -13,24 +13,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 7.4
+          php-version: 8.2
 
       - name: Generate Docs
         run: |
           wget -q https://phpdoc.org/phpDocumentor.phar
           chmod +x phpDocumentor.phar
-          ./phpDocumentor.phar -d src -t docs --visibility public,protected --title $GITHUB_REPOSITORY
+          ./phpDocumentor.phar run -d src -t docs --visibility public,protected --title $GITHUB_REPOSITORY
 
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@3.7.1
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages # The branch the action should deploy to.
-          FOLDER: docs # The folder the action should deploy.
-          CLEAN: true # Automatically remove deleted files from the deploy branch
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages # The branch the action should deploy to.
+          folder: docs # The folder the action should deploy.
+          clean: true # Automatically remove deleted files from the deploy branch
 
