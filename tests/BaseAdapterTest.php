@@ -155,4 +155,36 @@ abstract class BaseAdapterTest extends TestCase
         $this->assertColor($dest, 'bottom', 'green');
         $this->assertColor($dest, 'left', 'yellow');
     }
+
+    /**
+     * @see https://github.com/splitbrain/slika/issues/5
+     * @return void
+     */
+    public function testIssue5()
+    {
+        $orig = __DIR__ . '/issue5.gif';
+        $dest = $this->artefact('gif');
+
+        $this->assertSize($orig, 320, 240);
+        ($this->getAdapter($orig))
+            ->resize(160, 120)
+            ->save($dest);
+        $this->assertSize($dest, 160, 120);
+    }
+
+    public function testGifTransparency()
+    {
+        $orig = __DIR__ . '/transparency.gif';
+        $dest = $this->artefact('gif');
+
+        $this->assertSize($orig, 150, 150);
+        ($this->getAdapter($orig))
+            ->resize(100, 100)
+            ->save($dest);
+
+        $this->assertSize($dest, 100, 100);
+        $this->assertColor($dest, 'center', 'red');
+        $this->assertAlpha($dest, 'center', 0);
+        $this->assertAlpha($dest, 'top', 127);
+    }
 }
