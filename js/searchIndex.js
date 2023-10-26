@@ -101,6 +101,11 @@ Search.appendIndex(
             "summary": "Creates\u0020a\u0020new\u0020blank\u0020image\u0020to\u0020which\u0020we\u0020can\u0020copy",
             "url": "classes/splitbrain-slika-GdAdapter.html#method_createImage"
         },                {
+            "fqsen": "\\splitbrain\\slika\\GdAdapter\u003A\u003AkeepGifTransparency\u0028\u0029",
+            "name": "keepGifTransparency",
+            "summary": "Copy\u0020transparency\u0020from\u0020gif\u0020to\u0020gif",
+            "url": "classes/splitbrain-slika-GdAdapter.html#method_keepGifTransparency"
+        },                {
             "fqsen": "\\splitbrain\\slika\\GdAdapter\u003A\u003AboundingBox\u0028\u0029",
             "name": "boundingBox",
             "summary": "Calculate\u0020new\u0020size",
