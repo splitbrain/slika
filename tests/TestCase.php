@@ -99,7 +99,9 @@ class TestCase extends \PHPUnit\Framework\TestCase
         $image = $opener($path);
         $rgb = imagecolorat($image, $x, $y);
         $found = imagecolorsforindex($image, $rgb);
-        imagedestroy($image);
+        if(is_resource($image)) {
+            imagedestroy($image);
+        }
         return $found;
     }
 
