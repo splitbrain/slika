@@ -135,8 +135,9 @@ abstract class BaseAdapterTest extends TestCase
 
     public function provideAutoRotation()
     {
-        $range = range(0, 8, 1);
-        yield [array_shift($range)];
+        foreach (range(0, 8) as $i) {
+            yield [$i];
+        }
     }
 
     /**

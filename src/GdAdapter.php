@@ -89,26 +89,27 @@ class GdAdapter extends Adapter
         // fill color
         $transparency = imagecolorallocatealpha($this->image, 0, 0, 0, 127);
 
-        // rotate
+        // rotate (orientation 2 is a flip-only case and keeps $this->image)
+        $image = $this->image;
         if (in_array($orientation, [3, 4])) {
             $image = imagerotate($this->image, 180, $transparency);
-        }
-        if (in_array($orientation, [5, 6])) {
+        } elseif (in_array($orientation, [5, 6])) {
             $image = imagerotate($this->image, -90, $transparency);
             list($this->width, $this->height) = [$this->height, $this->width];
         } elseif (in_array($orientation, [7, 8])) {
             $image = imagerotate($this->image, 90, $transparency);
             list($this->width, $this->height) = [$this->height, $this->width];
         }
-        /** @var resource $image is now defined */
 
         // additionally flip
         if (in_array($orientation, [2, 5, 7, 4])) {
             imageflip($image, IMG_FLIP_HORIZONTAL);
         }
 
-        $this->__destruct(); // destroy old image
-        $this->image = $image;
+        if ($image !== $this->image) {
+            $this->__destruct(); // destroy old image
+            $this->image = $image;
+        }
 
         //keep png alpha channel if possible
         if ($this->extension == 'png' && function_exists('imagesavealpha')) {
