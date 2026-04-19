@@ -196,11 +196,6 @@ Search.appendIndex(
             "summary": "Start\u0020processing\u0020the\u0020image",
             "url": "classes/splitbrain-slika-Slika.html#method_run"
         },                {
-            "fqsen": "\\splitbrain\\slika\\Slika\u003A\u003AdetectImConvert\u0028\u0029",
-            "name": "detectImConvert",
-            "summary": "Probe\u0020known\u0020locations\u0020for\u0020an\u0020ImageMagick\u0020binary",
-            "url": "classes/splitbrain-slika-Slika.html#method_detectImConvert"
-        },                {
             "fqsen": "\\splitbrain\\slika\\Slika\u003A\u003AROTATE_CCW",
             "name": "ROTATE_CCW",
             "summary": "rotate\u0020an\u0020image\u0020counter\u0020clock\u0020wise",
@@ -220,11 +215,6 @@ Search.appendIndex(
             "name": "DEFAULT_OPTIONS",
             "summary": "these\u0020can\u0020be\u0020overwritten\u0020using\u0020the\u0020options\u0020array\u0020in\u0020run\u0028\u0029",
             "url": "classes/splitbrain-slika-Slika.html#constant_DEFAULT_OPTIONS"
-        },                {
-            "fqsen": "\\splitbrain\\slika\\Slika\u003A\u003AIMCONVERT_CANDIDATES",
-            "name": "IMCONVERT_CANDIDATES",
-            "summary": "fallback\u0020paths\u0020probed\u0020when\u0020the\u0020configured\u0020\u0027imconvert\u0027\u0020isn\u0027t\u0020executable",
-            "url": "classes/splitbrain-slika-Slika.html#constant_IMCONVERT_CANDIDATES"
         },                {
             "fqsen": "\\",
             "name": "\\",
