@@ -247,20 +247,6 @@
 <dd>Save the new file</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a class="" href="classes/splitbrain-slika-GdAdapter.html#method_boundingBox">boundingBox()</a>
-    <span>
-                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
-</dt>
-<dd>Calculate new size</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a class="" href="classes/splitbrain-slika-GdAdapter.html#method_cleanDimension">cleanDimension()</a>
-    <span>
-                                &nbsp;: int    </span>
-</dt>
-<dd>Ensure the given Dimension is a proper pixel value</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
     <a class="" href="classes/splitbrain-slika-GdAdapter.html#method_createImage">createImage()</a>
     <span>
                                 &nbsp;: resource    </span>
@@ -669,7 +655,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/GdAdapter.php"><a href="files/src-gdadapter.html"><abbr title="src/GdAdapter.php">GdAdapter.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">43</span>
+    <span class="phpdocumentor-element-found-in__line">42</span>
 
     </aside>
 
@@ -706,13 +692,6 @@
                                                             
                                              
                                     </dd>
-                                                <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">link</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                                                        <a class="phpdocumentor-tag-link" href="https://gist.github.com/EionRobb/8e0c76178522bc963c75caa6a77d3d37#file-imagecreatefromstring_autorotate-php-L15"> https://gist.github.com/EionRobb/8e0c76178522bc963c75caa6a77d3d37#file-imagecreatefromstring_autorotate-php-L15 </a>
-                    
-                                    </dd>
                                             </dl>
 
         
@@ -737,7 +716,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/GdAdapter.php"><a href="files/src-gdadapter.html"><abbr title="src/GdAdapter.php">GdAdapter.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">138</span>
+    <span class="phpdocumentor-element-found-in__line">115</span>
 
     </aside>
 
@@ -819,7 +798,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/GdAdapter.php"><a href="files/src-gdadapter.html"><abbr title="src/GdAdapter.php">GdAdapter.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">127</span>
+    <span class="phpdocumentor-element-found-in__line">104</span>
 
     </aside>
 
@@ -901,7 +880,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/GdAdapter.php"><a href="files/src-gdadapter.html"><abbr title="src/GdAdapter.php">GdAdapter.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">77</span>
+    <span class="phpdocumentor-element-found-in__line">54</span>
 
     </aside>
 
@@ -974,7 +953,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/GdAdapter.php"><a href="files/src-gdadapter.html"><abbr title="src/GdAdapter.php">GdAdapter.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">149</span>
+    <span class="phpdocumentor-element-found-in__line">126</span>
 
     </aside>
 
@@ -1042,150 +1021,6 @@
             -protected
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_boundingBox">
-        boundingBox()
-        <a href="classes/splitbrain-slika-GdAdapter.html#method_boundingBox" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/GdAdapter.php"><a href="files/src-gdadapter.html"><abbr title="src/GdAdapter.php">GdAdapter.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">297</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Calculate new size</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-                    <span class="phpdocumentor-signature__name">boundingBox</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$width</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$height</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-        <section class="phpdocumentor-description"><p>If widht and height are given, the new size will be fit within this bounding box.
-If only one value is given the other is adjusted to match according to the aspect ratio</p>
-</section>
-
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$width</span>
-                : <span class="phpdocumentor-argument-list__argument__type">int</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>width of the bounding box</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$height</span>
-                : <span class="phpdocumentor-argument-list__argument__type">int</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>height of the bounding box</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
-        Tags
-        <a href="classes/splitbrain-slika-GdAdapter.html#method_boundingBox#tags" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">throws</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><a href="classes/splitbrain-slika-Exception.html"><abbr title="\splitbrain\slika\Exception">Exception</abbr></a></span>
-                                                            
-                                             
-                                    </dd>
-                                            </dl>
-
-        
-    
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>(width, height)</p>
-</section>
-
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -protected
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_cleanDimension">
-        cleanDimension()
-        <a href="classes/splitbrain-slika-GdAdapter.html#method_cleanDimension" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/GdAdapter.php"><a href="files/src-gdadapter.html"><abbr title="src/GdAdapter.php">GdAdapter.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">331</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Ensure the given Dimension is a proper pixel value</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-                    <span class="phpdocumentor-signature__name">cleanDimension</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">int|string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$dim</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$orig</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-        <section class="phpdocumentor-description"><p>When a percentage is given, the value is calculated based on the given original dimension</p>
-</section>
-
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$dim</span>
-                : <span class="phpdocumentor-argument-list__argument__type">int|string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>New Dimension</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$orig</span>
-                : <span class="phpdocumentor-argument-list__argument__type">int</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Original dimension</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-
-        
-    
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">int</span>
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -protected
-                                                        "
->
     <h4 class="phpdocumentor-element__name" id="method_createImage">
         createImage()
         <a href="classes/splitbrain-slika-GdAdapter.html#method_createImage" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1194,7 +1029,7 @@ If only one value is given the other is adjusted to match according to the aspec
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/GdAdapter.php"><a href="files/src-gdadapter.html"><abbr title="src/GdAdapter.php">GdAdapter.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">215</span>
+    <span class="phpdocumentor-element-found-in__line">192</span>
 
     </aside>
 
@@ -1267,7 +1102,7 @@ If only one value is given the other is adjusted to match according to the aspec
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/GdAdapter.php"><a href="files/src-gdadapter.html"><abbr title="src/GdAdapter.php">GdAdapter.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">353</span>
+    <span class="phpdocumentor-element-found-in__line">274</span>
 
     </aside>
 
@@ -1345,7 +1180,7 @@ from the original image to be then resized to the wanted dimensions.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/GdAdapter.php"><a href="files/src-gdadapter.html"><abbr title="src/GdAdapter.php">GdAdapter.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">252</span>
+    <span class="phpdocumentor-element-found-in__line">229</span>
 
     </aside>
 
@@ -1403,7 +1238,7 @@ from the original image to be then resized to the wanted dimensions.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/GdAdapter.php"><a href="files/src-gdadapter.html"><abbr title="src/GdAdapter.php">GdAdapter.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">178</span>
+    <span class="phpdocumentor-element-found-in__line">155</span>
 
     </aside>
 
@@ -1467,7 +1302,7 @@ from the original image to be then resized to the wanted dimensions.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/GdAdapter.php"><a href="files/src-gdadapter.html"><abbr title="src/GdAdapter.php">GdAdapter.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">406</span>
+    <span class="phpdocumentor-element-found-in__line">327</span>
 
     </aside>
 
@@ -1676,8 +1511,6 @@ from the original image to be then resized to the wanted dimensions.</p>
                                             <li class=""><a href="classes/splitbrain-slika-GdAdapter.html#method_resize">resize()</a></li>
                                             <li class=""><a href="classes/splitbrain-slika-GdAdapter.html#method_rotate">rotate()</a></li>
                                             <li class=""><a href="classes/splitbrain-slika-GdAdapter.html#method_save">save()</a></li>
-                                            <li class=""><a href="classes/splitbrain-slika-GdAdapter.html#method_boundingBox">boundingBox()</a></li>
-                                            <li class=""><a href="classes/splitbrain-slika-GdAdapter.html#method_cleanDimension">cleanDimension()</a></li>
                                             <li class=""><a href="classes/splitbrain-slika-GdAdapter.html#method_createImage">createImage()</a></li>
                                             <li class=""><a href="classes/splitbrain-slika-GdAdapter.html#method_cropPosition">cropPosition()</a></li>
                                             <li class=""><a href="classes/splitbrain-slika-GdAdapter.html#method_keepGifTransparency">keepGifTransparency()</a></li>

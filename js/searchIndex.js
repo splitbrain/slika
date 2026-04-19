@@ -106,16 +106,6 @@ Search.appendIndex(
             "summary": "Copy\u0020transparency\u0020from\u0020gif\u0020to\u0020gif",
             "url": "classes/splitbrain-slika-GdAdapter.html#method_keepGifTransparency"
         },                {
-            "fqsen": "\\splitbrain\\slika\\GdAdapter\u003A\u003AboundingBox\u0028\u0029",
-            "name": "boundingBox",
-            "summary": "Calculate\u0020new\u0020size",
-            "url": "classes/splitbrain-slika-GdAdapter.html#method_boundingBox"
-        },                {
-            "fqsen": "\\splitbrain\\slika\\GdAdapter\u003A\u003AcleanDimension\u0028\u0029",
-            "name": "cleanDimension",
-            "summary": "Ensure\u0020the\u0020given\u0020Dimension\u0020is\u0020a\u0020proper\u0020pixel\u0020value",
-            "url": "classes/splitbrain-slika-GdAdapter.html#method_cleanDimension"
-        },                {
             "fqsen": "\\splitbrain\\slika\\GdAdapter\u003A\u003AcropPosition\u0028\u0029",
             "name": "cropPosition",
             "summary": "Calculates\u0020crop\u0020position",
@@ -145,6 +135,126 @@ Search.appendIndex(
             "name": "extension",
             "summary": "",
             "url": "classes/splitbrain-slika-GdAdapter.html#property_extension"
+        },                {
+            "fqsen": "\\splitbrain\\slika\\ImageInfo",
+            "name": "ImageInfo",
+            "summary": "Lightweight,\u0020metadata\u002Donly\u0020inspection\u0020of\u0020an\u0020image.",
+            "url": "classes/splitbrain-slika-ImageInfo.html"
+        },                {
+            "fqsen": "\\splitbrain\\slika\\ImageInfo\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/splitbrain-slika-ImageInfo.html#method___construct"
+        },                {
+            "fqsen": "\\splitbrain\\slika\\ImageInfo\u003A\u003AgetRawWidth\u0028\u0029",
+            "name": "getRawWidth",
+            "summary": "",
+            "url": "classes/splitbrain-slika-ImageInfo.html#method_getRawWidth"
+        },                {
+            "fqsen": "\\splitbrain\\slika\\ImageInfo\u003A\u003AgetRawHeight\u0028\u0029",
+            "name": "getRawHeight",
+            "summary": "",
+            "url": "classes/splitbrain-slika-ImageInfo.html#method_getRawHeight"
+        },                {
+            "fqsen": "\\splitbrain\\slika\\ImageInfo\u003A\u003AgetExtension\u0028\u0029",
+            "name": "getExtension",
+            "summary": "",
+            "url": "classes/splitbrain-slika-ImageInfo.html#method_getExtension"
+        },                {
+            "fqsen": "\\splitbrain\\slika\\ImageInfo\u003A\u003AgetOrientation\u0028\u0029",
+            "name": "getOrientation",
+            "summary": "",
+            "url": "classes/splitbrain-slika-ImageInfo.html#method_getOrientation"
+        },                {
+            "fqsen": "\\splitbrain\\slika\\ImageInfo\u003A\u003AgetWidth\u0028\u0029",
+            "name": "getWidth",
+            "summary": "",
+            "url": "classes/splitbrain-slika-ImageInfo.html#method_getWidth"
+        },                {
+            "fqsen": "\\splitbrain\\slika\\ImageInfo\u003A\u003AgetHeight\u0028\u0029",
+            "name": "getHeight",
+            "summary": "",
+            "url": "classes/splitbrain-slika-ImageInfo.html#method_getHeight"
+        },                {
+            "fqsen": "\\splitbrain\\slika\\ImageInfo\u003A\u003AgetDimensions\u0028\u0029",
+            "name": "getDimensions",
+            "summary": "",
+            "url": "classes/splitbrain-slika-ImageInfo.html#method_getDimensions"
+        },                {
+            "fqsen": "\\splitbrain\\slika\\ImageInfo\u003A\u003Aautorotate\u0028\u0029",
+            "name": "autorotate",
+            "summary": "Simulate\u0020Adapter\u003A\u003Aautorotate\u0028\u0029\u0020at\u0020the\u0020dimension\u0020level.",
+            "url": "classes/splitbrain-slika-ImageInfo.html#method_autorotate"
+        },                {
+            "fqsen": "\\splitbrain\\slika\\ImageInfo\u003A\u003Arotate\u0028\u0029",
+            "name": "rotate",
+            "summary": "Simulate\u0020Adapter\u003A\u003Arotate\u0028\u0029\u0020at\u0020the\u0020dimension\u0020level.",
+            "url": "classes/splitbrain-slika-ImageInfo.html#method_rotate"
+        },                {
+            "fqsen": "\\splitbrain\\slika\\ImageInfo\u003A\u003Aresize\u0028\u0029",
+            "name": "resize",
+            "summary": "Simulate\u0020Adapter\u003A\u003Aresize\u0028\u0029\u0020at\u0020the\u0020dimension\u0020level.",
+            "url": "classes/splitbrain-slika-ImageInfo.html#method_resize"
+        },                {
+            "fqsen": "\\splitbrain\\slika\\ImageInfo\u003A\u003Acrop\u0028\u0029",
+            "name": "crop",
+            "summary": "Simulate\u0020Adapter\u003A\u003Acrop\u0028\u0029\u0020at\u0020the\u0020dimension\u0020level.",
+            "url": "classes/splitbrain-slika-ImageInfo.html#method_crop"
+        },                {
+            "fqsen": "\\splitbrain\\slika\\ImageInfo\u003A\u003AreadExifOrientation\u0028\u0029",
+            "name": "readExifOrientation",
+            "summary": "Read\u0020the\u0020EXIF\u0020orientation\u0020tag\u0020of\u0020a\u0020JPEG\u0020file.",
+            "url": "classes/splitbrain-slika-ImageInfo.html#method_readExifOrientation"
+        },                {
+            "fqsen": "\\splitbrain\\slika\\ImageInfo\u003A\u003AreadExifOrientationFromBytes\u0028\u0029",
+            "name": "readExifOrientationFromBytes",
+            "summary": "Raw\u002Dbyte\u0020fallback\u0020for\u0020reading\u0020the\u0020EXIF\u0020orientation\u0020tag.",
+            "url": "classes/splitbrain-slika-ImageInfo.html#method_readExifOrientationFromBytes"
+        },                {
+            "fqsen": "\\splitbrain\\slika\\ImageInfo\u003A\u003AboundingBox\u0028\u0029",
+            "name": "boundingBox",
+            "summary": "Calculate\u0020new\u0020size\u0020to\u0020fit\u0020into\u0020a\u0020bounding\u0020box,\u0020preserving\u0020aspect\u0020ratio.",
+            "url": "classes/splitbrain-slika-ImageInfo.html#method_boundingBox"
+        },                {
+            "fqsen": "\\splitbrain\\slika\\ImageInfo\u003A\u003AcleanDimension\u0028\u0029",
+            "name": "cleanDimension",
+            "summary": "Normalize\u0020a\u0020dimension\u0020value\u0020to\u0020a\u0020pixel\u0020count.",
+            "url": "classes/splitbrain-slika-ImageInfo.html#method_cleanDimension"
+        },                {
+            "fqsen": "\\splitbrain\\slika\\ImageInfo\u003A\u003A\u0024imagepath",
+            "name": "imagepath",
+            "summary": "",
+            "url": "classes/splitbrain-slika-ImageInfo.html#property_imagepath"
+        },                {
+            "fqsen": "\\splitbrain\\slika\\ImageInfo\u003A\u003A\u0024rawWidth",
+            "name": "rawWidth",
+            "summary": "",
+            "url": "classes/splitbrain-slika-ImageInfo.html#property_rawWidth"
+        },                {
+            "fqsen": "\\splitbrain\\slika\\ImageInfo\u003A\u003A\u0024rawHeight",
+            "name": "rawHeight",
+            "summary": "",
+            "url": "classes/splitbrain-slika-ImageInfo.html#property_rawHeight"
+        },                {
+            "fqsen": "\\splitbrain\\slika\\ImageInfo\u003A\u003A\u0024extension",
+            "name": "extension",
+            "summary": "",
+            "url": "classes/splitbrain-slika-ImageInfo.html#property_extension"
+        },                {
+            "fqsen": "\\splitbrain\\slika\\ImageInfo\u003A\u003A\u0024orientation",
+            "name": "orientation",
+            "summary": "",
+            "url": "classes/splitbrain-slika-ImageInfo.html#property_orientation"
+        },                {
+            "fqsen": "\\splitbrain\\slika\\ImageInfo\u003A\u003A\u0024width",
+            "name": "width",
+            "summary": "",
+            "url": "classes/splitbrain-slika-ImageInfo.html#property_width"
+        },                {
+            "fqsen": "\\splitbrain\\slika\\ImageInfo\u003A\u003A\u0024height",
+            "name": "height",
+            "summary": "",
+            "url": "classes/splitbrain-slika-ImageInfo.html#property_height"
         },                {
             "fqsen": "\\splitbrain\\slika\\ImageMagickAdapter",
             "name": "ImageMagickAdapter",
