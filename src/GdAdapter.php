@@ -38,36 +38,13 @@ class GdAdapter extends Adapter
 
     /** @inheritDoc
      * @throws Exception
-     * @link https://gist.github.com/EionRobb/8e0c76178522bc963c75caa6a77d3d37#file-imagecreatefromstring_autorotate-php-L15
      */
     public function autorotate()
     {
         if ($this->extension !== 'jpeg') {
             return $this;
         }
-
-        $orientation = 1;
-
-        if (function_exists('exif_read_data')) {
-            // use PHP's exif capablities
-            $exif = exif_read_data($this->imagepath);
-            if (!empty($exif['Orientation'])) {
-                $orientation = $exif['Orientation'];
-            }
-        } else {
-            // grep the exif info from the raw contents
-            // we read only the first 70k bytes
-            $data = file_get_contents($this->imagepath, false, null, 0, 70000);
-            if (preg_match('@\x12\x01\x03\x00\x01\x00\x00\x00(.)\x00\x00\x00@', $data, $matches)) {
-                // Little endian EXIF
-                $orientation = ord($matches[1]);
-            } else if (preg_match('@\x01\x12\x00\x03\x00\x00\x00\x01\x00(.)\x00\x00@', $data, $matches)) {
-                // Big endian EXIF
-                $orientation = ord($matches[1]);
-            }
-        }
-
-        return $this->rotate($orientation);
+        return $this->rotate(ImageInfo::readExifOrientation($this->imagepath));
     }
 
     /**
@@ -126,7 +103,7 @@ class GdAdapter extends Adapter
      */
     public function resize($width, $height)
     {
-        list($width, $height) = $this->boundingBox($width, $height);
+        list($width, $height) = ImageInfo::boundingBox($this->width, $this->height, $width, $height);
         $this->resizeOperation($width, $height);
         return $this;
     }
@@ -281,62 +258,6 @@ class GdAdapter extends Adapter
             $whitecolorindex = @imagecolorallocate($canvas, 255, 255, 255);
             @imagefill($canvas, 0, 0, $whitecolorindex);
         }
-    }
-
-    /**
-     * Calculate new size
-     *
-     * If widht and height are given, the new size will be fit within this bounding box.
-     * If only one value is given the other is adjusted to match according to the aspect ratio
-     *
-     * @param int $width width of the bounding box
-     * @param int $height height of the bounding box
-     * @return array (width, height)
-     * @throws Exception
-     */
-    protected function boundingBox($width, $height)
-    {
-        $width = $this->cleanDimension($width, $this->width);
-        $height = $this->cleanDimension($height, $this->height);
-
-        if ($width == 0 && $height == 0) {
-            throw new Exception('You can not resize to 0x0');
-        }
-
-        if (!$height) {
-            // adjust to match width
-            $height = round(($width * $this->height) / $this->width);
-        } else if (!$width) {
-            // adjust to match height
-            $width = round(($height * $this->width) / $this->height);
-        } else {
-            // fit into bounding box
-            $scale = min($width / $this->width, $height / $this->height);
-            $width = $this->width * $scale;
-            $height = $this->height * $scale;
-        }
-
-        return [$width, $height];
-    }
-
-    /**
-     * Ensure the given Dimension is a proper pixel value
-     *
-     * When a percentage is given, the value is calculated based on the given original dimension
-     *
-     * @param int|string $dim New Dimension
-     * @param int $orig Original dimension
-     * @return int
-     */
-    protected function cleanDimension($dim, $orig)
-    {
-        if ($dim && substr($dim, -1) == '%') {
-            $dim = round($orig * ((float)$dim / 100));
-        } else {
-            $dim = (int)$dim;
-        }
-
-        return $dim;
     }
 
     /**
