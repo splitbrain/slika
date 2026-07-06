@@ -82,6 +82,8 @@ class ImageMagickAdapter extends Adapter
      */
     public function crop($width, $height, $upscale = true)
     {
+        $width = (int)$width;
+        $height = (int)$height;
         if ($width == 0 && $height == 0) {
             throw new Exception('You can not crop to 0x0');
         }

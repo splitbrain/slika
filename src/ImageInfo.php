@@ -180,16 +180,16 @@ class ImageInfo
      * Result equals the output size of Adapter::crop(): exactly ($w, $h)
      * when both are given, or a ($w, $w) / ($h, $h) square when only one is.
      *
-     * @param int|string $width in pixels or %
-     * @param int|string $height in pixels or %
+     * @param int $width in pixels
+     * @param int $height in pixels
      * @param bool $upscale when false, an image smaller than the target area is cropped but never enlarged
      * @return $this
      * @throws Exception when both dimensions are zero
      */
     public function crop($width, $height, $upscale = true)
     {
-        $width = self::cleanDimension($width, $this->width);
-        $height = self::cleanDimension($height, $this->height);
+        $width = (int)$width;
+        $height = (int)$height;
 
         if ($width == 0 && $height == 0) {
             throw new Exception('You can not crop to 0x0');
