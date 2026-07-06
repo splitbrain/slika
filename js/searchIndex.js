@@ -111,6 +111,11 @@ Search.appendIndex(
             "summary": "Calculates\u0020crop\u0020position",
             "url": "classes/splitbrain-slika-GdAdapter.html#method_cropPosition"
         },                {
+            "fqsen": "\\splitbrain\\slika\\GdAdapter\u003A\u003AcenterOffset\u0028\u0029",
+            "name": "centerOffset",
+            "summary": "Calculate\u0020the\u0020top\u0020left\u0020offset\u0020to\u0020extract\u0020a\u0020centered\u0020region\u0020of\u0020the\u0020given\u0020size",
+            "url": "classes/splitbrain-slika-GdAdapter.html#method_centerOffset"
+        },                {
             "fqsen": "\\splitbrain\\slika\\GdAdapter\u003A\u003AresizeOperation\u0028\u0029",
             "name": "resizeOperation",
             "summary": "resize\u0020or\u0020crop\u0020images\u0020using\u0020PHP\u0027s\u0020libGD\u0020support",
