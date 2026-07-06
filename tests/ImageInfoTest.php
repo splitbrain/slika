@@ -141,10 +141,40 @@ class ImageInfoTest extends TestCase
         (new ImageInfo(__DIR__ . '/landscape.png'))->resize(0, 0);
     }
 
+    public function testResizeNoUpscale()
+    {
+        $info = (new ImageInfo(__DIR__ . '/landscape.png'))->resize(2000, 2000, false);
+        $this->assertSame([1000, 500], $info->getDimensions());
+    }
+
+    public function testResizeUpscaleAllowed()
+    {
+        $info = (new ImageInfo(__DIR__ . '/landscape.png'))->resize(2000, 2000);
+        $this->assertSame([2000, 1000], $info->getDimensions());
+    }
+
     public function testCrop()
     {
         $info = (new ImageInfo(__DIR__ . '/landscape.png'))->crop(250, 250);
         $this->assertSame([250, 250], $info->getDimensions());
+    }
+
+    public function testCropNoUpscaleFits()
+    {
+        $info = (new ImageInfo(__DIR__ . '/landscape.png'))->crop(2000, 2000, false);
+        $this->assertSame([1000, 500], $info->getDimensions());
+    }
+
+    public function testCropNoUpscalePartial()
+    {
+        $info = (new ImageInfo(__DIR__ . '/landscape.png'))->crop(2000, 400, false);
+        $this->assertSame([1000, 400], $info->getDimensions());
+    }
+
+    public function testCropUpscaleAllowed()
+    {
+        $info = (new ImageInfo(__DIR__ . '/landscape.png'))->crop(2000, 2000);
+        $this->assertSame([2000, 2000], $info->getDimensions());
     }
 
     public function testCropOneDimWidth()

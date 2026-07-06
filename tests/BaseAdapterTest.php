@@ -109,6 +109,79 @@ abstract class BaseAdapterTest extends TestCase
         $this->assertAlpha($dest, 'center', 100);
     }
 
+    public function testResizeNoUpscale()
+    {
+        $orig = __DIR__ . '/landscape.png';
+        $dest = $this->artefact('png');
+
+        $this->assertSize($orig, 1000, 500);
+
+        // target bounding box is larger than the image: keep the original size
+        ($this->getAdapter($orig))
+            ->resize(2000, 2000, false)
+            ->save($dest);
+
+        $this->assertSize($dest, 1000, 500);
+        $this->assertColor($dest, 'top', 'blue');
+        $this->assertColor($dest, 'right', 'red');
+        $this->assertColor($dest, 'bottom', 'green');
+        $this->assertColor($dest, 'left', 'yellow');
+        $this->assertAlpha($dest, 'center', 100);
+    }
+
+    public function testResizeUpscaleAllowed()
+    {
+        $orig = __DIR__ . '/landscape.png';
+        $dest = $this->artefact('png');
+
+        $this->assertSize($orig, 1000, 500);
+
+        // upscaling is the default behaviour
+        ($this->getAdapter($orig))
+            ->resize(2000, 2000)
+            ->save($dest);
+
+        $this->assertSize($dest, 2000, 1000);
+    }
+
+    public function testCropNoUpscaleFits()
+    {
+        $orig = __DIR__ . '/landscape.png';
+        $dest = $this->artefact('png');
+
+        $this->assertSize($orig, 1000, 500);
+
+        // crop area is larger than the image in both dimensions: return it as is
+        ($this->getAdapter($orig))
+            ->crop(2000, 2000, false)
+            ->save($dest);
+
+        $this->assertSize($dest, 1000, 500);
+        $this->assertColor($dest, 'top', 'blue');
+        $this->assertColor($dest, 'right', 'red');
+        $this->assertColor($dest, 'bottom', 'green');
+        $this->assertColor($dest, 'left', 'yellow');
+        $this->assertAlpha($dest, 'center', 100);
+    }
+
+    public function testCropNoUpscalePartial()
+    {
+        $orig = __DIR__ . '/landscape.png';
+        $dest = $this->artefact('png');
+
+        $this->assertSize($orig, 1000, 500);
+
+        // only the height exceeds the image: crop the height, keep the full width, never scale
+        ($this->getAdapter($orig))
+            ->crop(2000, 400, false)
+            ->save($dest);
+
+        $this->assertSize($dest, 1000, 400);
+        $this->assertColor($dest, 'left', 'yellow');
+        $this->assertColor($dest, 'right', 'red');
+        $this->assertAlpha($dest, 'center', 100);
+    }
+
     public function provideConversion()
     {
         return [
