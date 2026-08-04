@@ -133,10 +133,16 @@ class ImageMagickAdapter extends Adapter
         $cmd = join(' ', $args);
         $output = [];
         $return = 0;
-        exec($cmd, $output, $return);
+        // ImageMagick reports on STDERR, capture that instead of passing it through
+        exec($cmd . ' 2>&1', $output, $return);
 
         if ($return !== 0) {
-            throw new Exception('ImageMagick returned non-zero exit code for ' . $cmd);
+            // warnings are not the reason for the failure and would only add noise
+            $output = preg_grep('/^(WARNING:|\s*$)/', $output, PREG_GREP_INVERT);
+
+            throw new Exception(
+                'ImageMagick returned non-zero exit code for ' . $cmd . "\n" . join("\n", $output)
+            );
         }
     }
 }
