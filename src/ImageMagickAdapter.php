@@ -21,6 +21,15 @@ class ImageMagickAdapter extends Adapter
         }
 
         $this->args[] = $this->options['imconvert'];
+
+        // limits only apply to what follows them, so they have to precede the input file
+        foreach ((array)$this->options['imlimits'] as $limit => $value) {
+            if ($value === null) continue;
+            $this->args[] = '-limit';
+            $this->args[] = $limit;
+            $this->args[] = $value;
+        }
+
         $this->args[] = $imagepath;
     }
 
