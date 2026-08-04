@@ -190,6 +190,13 @@
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/splitbrain-slika-Slika.html#method_mergeOptions">mergeOptions()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+</dt>
+<dd>Apply the given options on top of the defaults</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/splitbrain-slika-Slika.html#method_run">run()</a>
     <span>
                                 &nbsp;: <a href="classes/splitbrain-slika-Adapter.html"><abbr title="\splitbrain\slika\Adapter">Adapter</abbr></a>    </span>
@@ -228,7 +235,7 @@
     <span class="phpdocumentor-signature__visibility">public</span>
         <span class="phpdocumentor-signature__type">mixed</span>
     <span class="phpdocumentor-signature__name">DEFAULT_OPTIONS</span>
-    = <span class="phpdocumentor-signature__default-value">[&#039;quality&#039; =&gt; 92, &#039;imconvert&#039; =&gt; &#039;/usr/bin/convert&#039;]</span>
+    = <span class="phpdocumentor-signature__default-value">[&#039;quality&#039; =&gt; 92, &#039;imconvert&#039; =&gt; &#039;/usr/bin/convert&#039;, &#039;imlimits&#039; =&gt; [&#039;memory&#039; =&gt; &#039;256MiB&#039;, &#039;map&#039; =&gt; &#039;512MiB&#039;, &#039;disk&#039; =&gt; &#039;1GiB&#039;]]</span>
 </code>
 
 
@@ -347,6 +354,58 @@
             -public
                                     -static                    "
 >
+    <h4 class="phpdocumentor-element__name" id="method_mergeOptions">
+        mergeOptions()
+        <a href="classes/splitbrain-slika-Slika.html#method_mergeOptions" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Slika.php"><a href="files/src-slika.html"><abbr title="src/Slika.php">Slika.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">46</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Apply the given options on top of the defaults</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">mergeOptions</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$options</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Options holding an array of their own are merged key by key, so overriding a single
+entry keeps the remaining defaults in place.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$options</span>
+                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                    -static                    "
+>
     <h4 class="phpdocumentor-element__name" id="method_run">
         run()
         <a href="classes/splitbrain-slika-Slika.html#method_run" class="headerlink"><i class="fas fa-link"></i></a>
@@ -355,7 +414,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Slika.php"><a href="files/src-slika.html"><abbr title="src/Slika.php">Slika.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">40</span>
+    <span class="phpdocumentor-element-found-in__line">67</span>
 
     </aside>
 
@@ -443,6 +502,7 @@
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
+                                            <li class=""><a href="classes/splitbrain-slika-Slika.html#method_mergeOptions">mergeOptions()</a></li>
                                             <li class=""><a href="classes/splitbrain-slika-Slika.html#method_run">run()</a></li>
                                     </ul>
             </li>

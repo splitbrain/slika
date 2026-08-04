@@ -306,6 +306,11 @@ Search.appendIndex(
             "summary": "Factory\u0020to\u0020process\u0020an\u0020image\u0020using\u0020an\u0020available\u0020Adapter",
             "url": "classes/splitbrain-slika-Slika.html"
         },                {
+            "fqsen": "\\splitbrain\\slika\\Slika\u003A\u003AmergeOptions\u0028\u0029",
+            "name": "mergeOptions",
+            "summary": "Apply\u0020the\u0020given\u0020options\u0020on\u0020top\u0020of\u0020the\u0020defaults",
+            "url": "classes/splitbrain-slika-Slika.html#method_mergeOptions"
+        },                {
             "fqsen": "\\splitbrain\\slika\\Slika\u003A\u003Arun\u0028\u0029",
             "name": "run",
             "summary": "Start\u0020processing\u0020the\u0020image",
